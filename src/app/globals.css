@@ -20,6 +20,10 @@ body {
   @apply bg-gradient-to-b from-black to-slate-900;
 }
 
+* {
+  color: #ffffff;
+}
+
 .content-container h2, .content-container ul, .content-container p {
   @apply mb-3;
 }
