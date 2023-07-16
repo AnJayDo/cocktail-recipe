@@ -17,11 +17,23 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply bg-gradient-to-b from-black to-slate-900;
+}
+
+.content-container h2, .content-container ul, .content-container p {
+  @apply mb-3;
+}
+
+.content-container h2 {
+  @apply font-bold text-white text-2xl;
+}
+
+@layer components {
+  .cocktail-list {
+    @apply flex flex-col py-8;
+  }
+
+  .content-container {
+    @apply w-full max-w-2xl overflow-hidden mx-auto mt-4;
+  }
 }
