@@ -15,7 +15,7 @@ const Cocktail = ({ cocktail }: { cocktail: any }) => {
         />
       </Link>
       <Link href={'/c/' + cocktail._id}><h1 className='font-bold text-xl'>{cocktail.name}</h1></Link>
-      <p className='opacity-60'>{cocktail.description.length > 100 ? cocktail.description.slice(100) + '...' : cocktail.description}</p>
+      <p className='opacity-60'>{cocktail.description.length > 100 ? cocktail.description.slice(0, 100) + '...' : cocktail.description}</p>
       <div className='flex justify-end'>
         <Link href={'/c/' + cocktail._id} className='btn btn-solid-secondary'>
           Read more
