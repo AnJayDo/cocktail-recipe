@@ -24,6 +24,10 @@ body {
   @apply mb-3;
 }
 
+.content-container ul li {
+  @apply mb-0.5
+}
+
 .content-container h2 {
   @apply font-bold text-white text-2xl;
 }

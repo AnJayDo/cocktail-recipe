@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Cocktail Recipes - Jay An',
-  description: 'Cocktail Recipes</span><br/> for everyone. Build by Jay An with 💔 a broken heart.',
+  description: 'Cocktail Recipes for everyone. Build by Jay An with 💔 a broken heart.',
 }
 
 export default function RootLayout({
