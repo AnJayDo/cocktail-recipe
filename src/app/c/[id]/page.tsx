@@ -6,47 +6,9 @@ import { useQuery, gql } from "@apollo/client";
 import Loading from '@/app/components/Loading';
 import { calcAbv, getGarnishIcon, getGlassTypeSrcByName } from '@/app/lib/utils';
 import { COCKTAIL_BY_ID_QUERY } from '@/app/lib/GraphQLQuery'
+import Head from 'next/head';
 
 const tagClassList = ["btn-solid-primary","btn-solid-secondary","btn-solid-success","btn-solid-error","btn-solid-warning",]
- 
-type Props = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
-
-const fetchURI =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:6969'
-    : 'https://cocktail-graphql.dovanminhan.com';
- 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
-  // read route params
-  const id = params.id
- 
-  // fetch data
-  const result = await fetch(fetchURI+'/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: COCKTAIL_BY_ID_QUERY,
-      variables: {
-        id,
-      },
-    }),
-  }).then((res) => res.json());
- 
-  return {
-    title: result.data.cocktail.name + ' - by An Do',
-    openGraph: {
-      images: [fetchURI+'/og?id='+id],
-    },
-  }
-}
 
 export default function Cocktail({ params } : { params: { id: string } }) {
   const { loading, error, data } = useQuery(COCKTAIL_BY_ID_QUERY, {
@@ -62,6 +24,10 @@ export default function Cocktail({ params } : { params: { id: string } }) {
         error ? <p>Error : {error.message}</p>
         : 
         <main className='w-full min-h-screen pt-20 flex flex-col px-4'>
+            <Head>
+              <title>{cocktail.name} - By Jay An</title>
+              <meta name="description" content={cocktail.description.length > 100 ? cocktail.description.slice(0, 100) + '...' : cocktail.description} />
+            </Head>
             <h1 className='text-6xl font-bold text-white text-center mb-3'>{cocktail.name}</h1>
             <div className='flex mx-auto my-2'>
                 {cocktail.spirits.map((item: any, index: number) => <div className={'mx-1 font-bold text-center w-max flex items-center btn-xs '+tagClassList[index%5]} key={index}>{item.name}</div>)}

@@ -2,19 +2,11 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from 'next/server';
 import sizeOf from 'buffer-image-size';
+import { arrayBufferToBase64, toBuffer } from '@/app/lib/utils';
 // App router includes @vercel/og.
 // No need to install it.
 
 export const runtime = 'edge';
-
-function toBuffer(arrayBuffer: ArrayBuffer) {
-  const buffer = Buffer.alloc(arrayBuffer.byteLength);
-  const view = new Uint8Array(arrayBuffer);
-  for (let i = 0; i < buffer.length; ++i) {
-    buffer[i] = view[i];
-  }
-  return buffer;
-}
 
 const fetchURI =
   process.env.NODE_ENV === 'development'
@@ -80,7 +72,7 @@ export async function  Image({ params }: { params: { id: string } })  {
           alignItems: 'center',
         }}
       >
-        <img width={(630 / height) * width} height={630} src={image} />
+        <img width={(630 / height) * width} height={630} src={'data:image/png;base64, '+ arrayBufferToBase64(image)} />
         <div
           style={{
             maxWidth: 1200 - (630 / height) * width,
