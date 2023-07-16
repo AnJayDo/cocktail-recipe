@@ -27,7 +27,7 @@ const COCKTAIL_BY_ID_QUERY = `
   }
 `;
 
-export async function  Image({ params }: { params: { id: string } })  {
+export default async function Image({ params }: { params: { id: string } })  {
   const id = params.id;
 
   const fontData = await fetch(
@@ -56,8 +56,6 @@ export async function  Image({ params }: { params: { id: string } })  {
 
   const { width, height } = sizeOf(toBuffer(image) as Buffer);
 
-  console.log(width, height);
-
   return new ImageResponse(
     (
       <div
@@ -72,7 +70,7 @@ export async function  Image({ params }: { params: { id: string } })  {
           alignItems: 'center',
         }}
       >
-        <img width={(630 / height) * width} height={630} src={'data:image/png;base64, '+ arrayBufferToBase64(image)} />
+        <img width={(630 / height) * width} height={630} src={image as unknown as string} />
         <div
           style={{
             maxWidth: 1200 - (630 / height) * width,

@@ -14,13 +14,14 @@ export const size = {
  
 export const contentType = 'image/png'
 
-export async function Image() {
+export default async function Image() {
   const fontData = await fetch(
     //new URL('../../assets/ExcaliburNouveau.ttf', import.meta.url)
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000/ExcaliburNouveau.ttf'
       : 'https://recipe.dovanminhan.com/ExcaliburNouveau.ttf'
   ).then((res) => res.arrayBuffer());
+  
   return new ImageResponse(
     (
       <div
