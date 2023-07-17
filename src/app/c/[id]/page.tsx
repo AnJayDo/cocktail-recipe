@@ -29,8 +29,8 @@ export default function Cocktail({ params } : { params: { id: string } }) {
               <meta name="description" content={cocktail.description.length > 100 ? cocktail.description.slice(0, 100) + '...' : cocktail.description} />
             </Head>
             <h1 className='text-6xl font-bold text-white text-center mb-3'>{cocktail.name}</h1>
-            <div className='flex mx-auto my-2'>
-                {cocktail.spirits.map((item: any, index: number) => <div className={'mx-1 font-bold text-center w-max flex items-center btn-xs '+tagClassList[index%5]} key={index}>{item.name}</div>)}
+            <div className='flex flex-wrap max-w-full mx-auto my-2'>
+                {cocktail.spirits.map((item: any, index: number) => <div className={'m-1 font-bold text-center w-max flex items-center btn-xs '+tagClassList[index%5]} key={index}>{item.name}</div>)}
             </div>
             <div className='w-full max-w-2xl rounded-2xl overflow-hidden mx-auto'>
                 <Image alt={cocktail.description} width={1000} height={1000} src={cocktail.image} />

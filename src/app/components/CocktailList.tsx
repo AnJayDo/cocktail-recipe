@@ -6,7 +6,7 @@ import { ApolloError } from '@apollo/client';
 const Cocktail = ({ cocktail }: { cocktail: any }) => {
   return (
     <div className='p-3 border-2 border-slate-600 bg-zinc-900 rounded-2xl grid grid-cols-1 gap-2 pb-4 hover:scale-105 hover:brightness-120 transition-all'>
-      <Link href={'/c/' + cocktail._id} className='w-full max-h-[calc(1280px/3)] overflow-hidden rounded-xl'>
+      <Link href={'/c/' + cocktail._id} className='w-full max-h-[calc(1280px/3)] overflow-hidden rounded-xl flex justify-center items-center'>
         <Image
           width={500}
           height={500}
